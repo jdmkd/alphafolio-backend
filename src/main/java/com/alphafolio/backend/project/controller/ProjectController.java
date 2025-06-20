@@ -1,5 +1,6 @@
 package com.alphafolio.backend.project.controller;
 
+import com.alphafolio.backend.config.response.ApiResponseBuilder;
 import com.alphafolio.backend.project.dto.ProjectDTO;
 import com.alphafolio.backend.project.service.ProjectService;
 import jakarta.validation.Valid;
@@ -12,39 +13,40 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/projects")
+@RequiredArgsConstructor
 @CrossOrigin(origins = "*") // For CORS (frontend connection)
 public class ProjectController {
 
-    @Autowired
     private final ProjectService projectService;
 
-    public ProjectController(ProjectService projectService) {
-        this.projectService = projectService;
-    }
-
+    // Get all projects
     @GetMapping
-    public List<ProjectDTO> getAllProjects(){
-        return projectService.getAllProjects();
+    public ResponseEntity<?> getAllProjects() {
+        return ApiResponseBuilder.success("All projects retrieved", projectService.getAllProjects());
     }
 
+    // Create new project
     @PostMapping
-    public ProjectDTO create(@RequestBody @Valid ProjectDTO projectDTO) {
-        return projectService.saveProject(projectDTO);
+    public ResponseEntity<?> createProject(@RequestBody @Valid ProjectDTO projectDTO) {
+        return ApiResponseBuilder.success("Project created successfully", projectService.saveProject(projectDTO));
     }
 
+    // Get project by ID
     @GetMapping("/{id}")
-    public ProjectDTO getById(@PathVariable Long id) {
-        return projectService.getProjectById(id);
+    public ResponseEntity<?> getProjectById(@PathVariable Long id) {
+        return ApiResponseBuilder.success("Project fetched", projectService.getProjectById(id));
     }
 
+    // Update project
     @PutMapping("/{id}")
-    public ResponseEntity<ProjectDTO> updateProject(@PathVariable Long id, @RequestBody @Valid ProjectDTO projectDTO) {
-        ProjectDTO updated = projectService.updateProject(id, projectDTO);
-        return ResponseEntity.ok(updated);
+    public ResponseEntity<?> updateProject(@PathVariable Long id, @RequestBody @Valid ProjectDTO projectDTO) {
+        return ApiResponseBuilder.success("Project updated", projectService.updateProject(id, projectDTO));
     }
 
+    // Delete project
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<?> deleteProject(@PathVariable Long id) {
         projectService.deleteProject(id);
+        return ApiResponseBuilder.success("Project deleted successfully", null);
     }
 }
