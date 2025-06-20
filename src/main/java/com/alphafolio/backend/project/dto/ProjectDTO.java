@@ -1,4 +1,4 @@
-package com.alphafolio.backend.dto;
+package com.alphafolio.backend.project.dto;
 
 import lombok.*;
 

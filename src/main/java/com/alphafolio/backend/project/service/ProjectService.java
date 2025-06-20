@@ -1,10 +1,10 @@
-package com.alphafolio.backend.service;
+package com.alphafolio.backend.project.service;
 
-import com.alphafolio.backend.dto.ProjectDTO;
+import com.alphafolio.backend.project.dto.ProjectDTO;
 import com.alphafolio.backend.exception.ResourceNotFoundException;
-import com.alphafolio.backend.mapper.ProjectMapper;
-import com.alphafolio.backend.model.Project;
-import com.alphafolio.backend.repository.ProjectRepository;
+import com.alphafolio.backend.project.mapper.ProjectMapper;
+import com.alphafolio.backend.project.model.Project;
+import com.alphafolio.backend.project.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

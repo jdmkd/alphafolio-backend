@@ -1,4 +1,4 @@
-package com.alphafolio.backend.dto;
+package com.alphafolio.backend.skill.dto;
 
 import lombok.*;
 import java.time.LocalDateTime;

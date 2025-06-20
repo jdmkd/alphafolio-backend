@@ -1,7 +1,7 @@
-package com.alphafolio.backend.mapper;
+package com.alphafolio.backend.skill.mapper;
 
-import com.alphafolio.backend.dto.SkillDTO;
-import com.alphafolio.backend.model.Skill;
+import com.alphafolio.backend.skill.dto.SkillDTO;
+import com.alphafolio.backend.skill.model.Skill;
 
 public class SkillMapper {
     public static SkillDTO toDTO(Skill skill){

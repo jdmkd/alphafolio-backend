@@ -1,8 +1,8 @@
-package com.alphafolio.backend.mapper;
+package com.alphafolio.backend.project.mapper;
 
 
-import com.alphafolio.backend.dto.ProjectDTO;
-import com.alphafolio.backend.model.Project;
+import com.alphafolio.backend.project.dto.ProjectDTO;
+import com.alphafolio.backend.project.model.Project;
 
 public class ProjectMapper {
 

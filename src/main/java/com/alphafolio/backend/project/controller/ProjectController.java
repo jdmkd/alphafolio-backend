@@ -1,8 +1,7 @@
-package com.alphafolio.backend.controller;
+package com.alphafolio.backend.project.controller;
 
-import com.alphafolio.backend.dto.ProjectDTO;
-import com.alphafolio.backend.model.Project;
-import com.alphafolio.backend.service.ProjectService;
+import com.alphafolio.backend.project.dto.ProjectDTO;
+import com.alphafolio.backend.project.service.ProjectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/projects")
 @CrossOrigin(origins = "*") // For CORS (frontend connection)
 public class ProjectController {
 
@@ -22,28 +22,28 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @GetMapping("/projects")
+    @GetMapping
     public List<ProjectDTO> getAllProjects(){
         return projectService.getAllProjects();
     }
 
-    @PostMapping("/projects")
+    @PostMapping
     public ProjectDTO create(@RequestBody @Valid ProjectDTO projectDTO) {
         return projectService.saveProject(projectDTO);
     }
 
-    @GetMapping("/projects/{id}")
+    @GetMapping("/{id}")
     public ProjectDTO getById(@PathVariable Long id) {
         return projectService.getProjectById(id);
     }
 
-    @PutMapping("/projects/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ProjectDTO> updateProject(@PathVariable Long id, @RequestBody @Valid ProjectDTO projectDTO) {
         ProjectDTO updated = projectService.updateProject(id, projectDTO);
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping("/projects/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         projectService.deleteProject(id);
     }

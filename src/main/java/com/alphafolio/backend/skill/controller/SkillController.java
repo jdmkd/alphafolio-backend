@@ -1,13 +1,10 @@
-package com.alphafolio.backend.controller;
+package com.alphafolio.backend.skill.controller;
 
-import com.alphafolio.backend.dto.SkillDTO;
-import com.alphafolio.backend.service.SkillService;
+import com.alphafolio.backend.skill.dto.SkillDTO;
+import com.alphafolio.backend.skill.service.SkillService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.query.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -18,31 +15,31 @@ public class SkillController {
 
     private final SkillService skillService;
 
-    // ✅ Get all skills (with optional search and pagination)
+    // Get all skills (with optional search and pagination)
     @GetMapping
     public List<SkillDTO> getSkills() {
         return skillService.getAllSkills();
     }
 
-    // ✅ Create a new Skill
+    // Create a new Skill
     @PostMapping
     public SkillDTO createSkill(@RequestBody SkillDTO skillDTO) {
         return skillService.createSkill(skillDTO);
     }
 
-    // ✅ Get a single skill by ID
+    // Get a single skill by ID
     @GetMapping("/{id}")
     public SkillDTO getSkill(@PathVariable Long id) {
         return skillService.getSkillById(id);
     }
 
-    // ✅ Update a skill
+    // Update a skill
     @PutMapping("/{id}")
     public SkillDTO updateSkill(@PathVariable Long id, @RequestBody SkillDTO skillDTO) {
         return skillService.updateSkill(id, skillDTO);
     }
 
-    // ✅ Delete a skill
+    // Delete a skill
     @DeleteMapping("/{id}")
     public void deleteSkill(@PathVariable Long id) {
         skillService.deleteSkill(id);

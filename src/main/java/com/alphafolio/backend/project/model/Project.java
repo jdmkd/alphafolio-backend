@@ -1,4 +1,4 @@
-package com.alphafolio.backend.model;
+package com.alphafolio.backend.project.model;
 
 
 import jakarta.persistence.*;

@@ -1,12 +1,11 @@
-package com.alphafolio.backend.service;
+package com.alphafolio.backend.skill.service;
 
-import com.alphafolio.backend.dto.SkillDTO;
+import com.alphafolio.backend.skill.dto.SkillDTO;
 import com.alphafolio.backend.exception.ResourceNotFoundException;
-import com.alphafolio.backend.mapper.SkillMapper;
-import com.alphafolio.backend.model.Skill;
-import com.alphafolio.backend.repository.SkillRepository;
+import com.alphafolio.backend.skill.mapper.SkillMapper;
+import com.alphafolio.backend.skill.model.Skill;
+import com.alphafolio.backend.skill.repository.SkillRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
