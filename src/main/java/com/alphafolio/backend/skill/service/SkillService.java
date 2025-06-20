@@ -1,7 +1,7 @@
 package com.alphafolio.backend.skill.service;
 
 import com.alphafolio.backend.skill.dto.SkillDTO;
-import com.alphafolio.backend.exception.ResourceNotFoundException;
+import com.alphafolio.backend.config.exception.ResourceNotFoundException;
 import com.alphafolio.backend.skill.mapper.SkillMapper;
 import com.alphafolio.backend.skill.model.Skill;
 import com.alphafolio.backend.skill.repository.SkillRepository;
@@ -20,12 +20,14 @@ public class SkillService {
 
     private final SkillRepository skillRepository;
 
+    // Create a new skill entry.
     public SkillDTO createSkill(SkillDTO skillDTO) {
         Skill skill = SkillMapper.toEntity(skillDTO);
         Skill saved = skillRepository.save(skill);
         return SkillMapper.toDTO(saved);
     }
 
+    // Retrieve skills with optional search and pagination support.
     public Page<SkillDTO> getSkillsWithSearch(String search, Pageable pageable) {
         Page<Skill> skills;
 
@@ -38,19 +40,20 @@ public class SkillService {
         return skills.map(SkillMapper::toDTO);
     }
 
-    // Get all skills
+    // Retrieve all skills without pagination.
     public List<SkillDTO> getAllSkills() {
         return skillRepository.findAll().stream()
                 .map(SkillMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList(); // Java 16+
     }
 
+    // Get a specific skill by its ID.
     public SkillDTO getSkillById(Long id) {
         Skill skill = skillRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Skill not found with id: " + id));
         return SkillMapper.toDTO(skill);
     }
-
+    // Update a skill by ID.
     public SkillDTO updateSkill(Long id, SkillDTO updatedDTO) {
         Skill skill = skillRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Skill not found with id: " + id));
@@ -62,10 +65,10 @@ public class SkillService {
         skill.setDescription(updatedDTO.getDescription());
         skill.setFeatured(updatedDTO.isFeatured());
 
-        Skill updated = skillRepository.save(skill);
-        return SkillMapper.toDTO(updated);
+        return SkillMapper.toDTO(skillRepository.save(skill));
     }
 
+    // Delete a skill by ID.
     public void deleteSkill(Long id) {
         Skill skill = skillRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Skill not found with id: " + id));
