@@ -1,4 +1,4 @@
-package com.alphafolio.backend.exception;
+package com.alphafolio.backend.config.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

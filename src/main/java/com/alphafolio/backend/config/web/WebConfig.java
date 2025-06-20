@@ -1,4 +1,4 @@
-package com.alphafolio.backend.config;
+package com.alphafolio.backend.config.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
